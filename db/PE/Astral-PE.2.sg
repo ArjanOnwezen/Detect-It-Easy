@@ -1,0 +1,21 @@
+// Detect It Easy: detection rule file
+
+// Author: DosX
+// E-Mail: collab@kay-software.ru
+// GitHub: https://github.com/DosX-dev
+// Telegram: @DosX_dev
+
+// https://github.com/DosX-dev/Astral-PE
+init("protector", "Astral-PE");
+
+function detect() {
+    var firstSection = PE.section[0];
+
+    if (firstSection.Name === "" &&
+        firstSection.Characteristics === 0xe0000020 &&
+        PE.getImportLibraryName(0)[0] === '.') {
+        bDetected = true;
+    }
+
+    return result();
+}
